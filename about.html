@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про нас - Будівельний Комфорт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Та сама навігація -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-hammer"></i>
+                <span>Будівельний Комфорт</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Головна</a></li>
+                <li><a href="about.html" class="nav-link active"><i class="fas fa-info-circle"></i> Про нас</a></li>
+                <li><a href="index.html#products" class="nav-link"><i class="fas fa-boxes"></i> Товари</a></li>
+                <li><a href="index.html#contact" class="nav-link"><i class="fas fa-phone"></i> Контакти</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="about-header">
+        <div class="container">
+            <h1><i class="fas fa-building"></i> Про Будівельний Комфорт</h1>
+            <h4>Ми робимо будівництво простим і комфортним!</h4>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Статистика -->
+        <section class="stats-section fade-in">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-boxes-stacked"></i>
+                    <div class="stat-number" data-target="5000">0</div>
+                    <p>Тонн матеріалів</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number" data-target="2500">0</div>
+                    <p>Задоволених клієнтів</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-truck"></i>
+                    <div class="stat-number" data-target="48">0</div>
+                    <p>Годин доставки</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-number" data-target="4.9">0</div>
+                    <p>Рейтинг</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Про компанію -->
+        <section class="about-content fade-in">
+            <div class="content-grid">
+                <div class="text-block">
+                    <h2>Чому обирають нас?</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Найкращі ціни в регіоні</li>
+                        <li><i class="fas fa-shipping-fast"></i> Швидка доставка по всій Україні</li>
+                        <li><i class="fas fa-handshake"></i> Гарантія якості на всі товари</li>
+                        <li><i class="fas fa-clock"></i> Робота 7 днів на тиждень</li>
+                        <li><i class="fas fa-headset"></i> Консультація від професійних будівельників</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Замовити дзвінок</a>
+                </div>
+                <div class="image-block">
+                    <img src="https://learn.logikaschool.com/uploads/student/1725652/69353fdcdf03e.png" alt="Будівництво" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Відгуки -->
+        <section class="reviews-section fade-in">
+            <h2>Що кажуть клієнти</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <img src="https://learn.logikaschool.com/uploads/student/1725652/69353fdcdf03e.png" alt="Клієнт" class="review-avatar">
+                    <div class="review-text">
+                        <p>"Замовив цеглу і шифер - все приїхало вчасно, якість супер! Рекомендую!"</p>
+                        <div class="review-author">Іван П., будівельник</div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="https://learn.logikaschool.com/uploads/student/1725652/69353fdcdf03e.png" alt="Клієнт" class="review-avatar">
+                    <div class="review-text">
+                        <p>"25% знижка на цемент - це просто знахідка! Дуже вигідно брати оптом."</p>
+                        <div class="review-author">Олена К., власниця будинку</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Будівельний Комфорт. Всі права захищено.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анімація лічильників
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // Навігація та інші скрипти як на головній
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        window.addEventListener('load', animateStats);
+    </script>
+</body>
+</html>
