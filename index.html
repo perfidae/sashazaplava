@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Навігація -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-hammer"></i>
+                <span>Будівельний Комфорт</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Головна</a></li>
+                <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> Про нас</a></li>
+                <li><a href="#products" class="nav-link"><i class="fas fa-boxes"></i> Товари</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-phone"></i> Контакти</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
     <header>
         <div class="container">
             <h1>Будівельний Комфорт</h1>
@@ -26,7 +47,7 @@
     </header>
 
     <main class="container">
-        <section class="products-grid">
+        <section id="products" class="products-grid">
             <!-- Облицювана цегла -->
             <div class="product-card fade-in">
                 <h2>Облицювана цегла</h2>
@@ -52,7 +73,7 @@
                 </div>
                 <div class="product-buttons">
                     <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1" class="btn">Купити</a>
-                    <a href="#" class="btn btn-secondary">Змінити матеріали</a>
+                    <a href="about.html" class="btn btn-secondary">Детальніше</a>
                 </div>
             </div>
 
@@ -70,7 +91,7 @@
                 </div>
             </div>
 
-            <!-- Цемент -->
+            <!-- Мішок цементу -->
             <div class="product-card fade-in">
                 <h2>Мішок цементу</h2>
                 <p class="product-description">Це просто мішок цементуґ. з якого можна зробити щось... Наприклад бетон для клейки цегли</p>
@@ -115,6 +136,15 @@
             </div>
         </section>
 
+        <section id="contact" class="contact-section fade-in">
+            <h2>Зв'яжіться з нами</h2>
+            <p>Питання? Пишіть у Telegram або дзвоніть!</p>
+            <div class="contact-info">
+                <a href="https://t.me/yourchannel" class="contact-link"><i class="fab fa-telegram"></i> @budkomfort</a>
+                <a href="tel:+380501234567" class="contact-link"><i class="fas fa-phone"></i> +38 (050) 123-45-67</a>
+            </div>
+        </section>
+
         <section class="coming-soon fade-in">
             <h1>НЄАС МОЖНА ЗНАЄЙТИ ТУЄТ!!!1111111!11!!</h1>
             <h4>Більше товарів буде пізніше ¯\_(ツ)_/¯</h4>
@@ -128,7 +158,28 @@
     </footer>
 
     <script>
-        // Проста анімація появи при скролі
+        // Мобільне меню
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Активна навігація
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                }
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Анімація появи при скролі
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -160,6 +211,16 @@
 
         window.addEventListener('load', () => {
             document.querySelectorAll('.stock-number').forEach(animateCounter);
+        });
+
+        // Фіксована навігація при скролі
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
